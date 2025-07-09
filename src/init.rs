@@ -75,7 +75,7 @@ impl DeviceFilter for (u16, u16) {
         _device: &Device<T>,
         device_desc: &DeviceDescriptor,
     ) -> bool {
-        self.0 == device_desc.vendor_id() && self.0 == device_desc.product_id()
+        self.0 == device_desc.vendor_id() && self.1 == device_desc.product_id()
     }
 }
 
