@@ -103,7 +103,7 @@ pub fn read(
     };
     let request_header = request_device_dependent_msg_in_header(
         btag.get(),
-        bulk_in_endpoint.max_packet_size as u32,
+        misc::APPLICATION_BUFFER_SIZE,
         term_char,
     )?;
 
@@ -111,7 +111,7 @@ pub fn read(
     let mut output_data: Vec<u8> = Vec::new();
 
     let mut buffer: Vec<u8> =
-        vec![0x00; bulk_in_endpoint.max_packet_size as usize + misc::USBTMC_HEADER_SIZE];
+        vec![0x00; misc::APPLICATION_BUFFER_SIZE as usize + misc::USBTMC_HEADER_SIZE];
 
     // READING LOOP
     // ==========
