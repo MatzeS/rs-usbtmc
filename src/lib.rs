@@ -202,6 +202,19 @@ impl UsbtmcClient {
         Ok(())
     }
 
+    pub fn read_raw(&self) -> Result<Vec<u8>> {
+        use communication::bulk;
+
+        Ok(bulk::read(
+            &self.handle,
+            &self.btag,
+            &self.endpoints.bulk_in_ep,
+            &self.endpoints.bulk_out_ep,
+            &self.capabilities,
+            &self.timeout,
+        )?)
+    }
+
     /// ### Query Raw
     ///
     /// Send a command and get a response from the device.
